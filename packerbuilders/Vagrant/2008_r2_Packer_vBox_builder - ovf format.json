@@ -18,6 +18,7 @@
 	  "post_shutdown_delay": "5m",
       "disk_size": 20000,
       "format": "ova",
+      "output_directory": "../../../finishedbuilds",
       "floppy_files": [
         "{{user `autounattend`}}"
       ],
