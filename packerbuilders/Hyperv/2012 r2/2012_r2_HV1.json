@@ -1,0 +1,28 @@
+{
+  "builders": [
+    {
+      "type": "hyperv-iso",
+	  "communicator": "winrm",
+	  "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "boot_wait": "2m",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "disk_size": 20000,
+      "switch_name": "HV1switch",
+      "floppy_files": [
+        "answer_files/2012_r2_core/Autounattend.xml"
+      ]
+    }
+  ],
+      
+  "variables": {
+    "iso_url": "./ISO/en_windows_server_2012_r2_x64_dvd_2707946.iso",
+    "iso_checksum_type": "MD5",
+    "iso_checksum": "0e7c09aab20dec3cd7eab236dab90e78",
+    "autounattend": "./answer_files/2012_r2_core/Autounattend.xml"
+  }
+  }
+  

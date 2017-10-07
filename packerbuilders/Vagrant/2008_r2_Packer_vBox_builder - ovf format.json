@@ -1,0 +1,67 @@
+{
+
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+	  "vm_name": "2008r2",
+	  "communicator": "winrm",
+	  "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "headless": false,
+      "boot_wait": "2m",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "guest_os_type": "Windows2012_64",
+	  "guest_additions_mode": "disable",
+	  "post_shutdown_delay": "5m",
+      "disk_size": 20000,
+      "format": "ova",
+      "floppy_files": [
+        "{{user `autounattend`}}"
+      ],
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "2048"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "1"
+        ],
+		[
+		  "modifyvm", 
+		  "{{.Name}}", 
+		  "--natpf1",
+		  "guestwinrm,tcp,127.0.0.1,5985,,5985"
+        ]
+      ]
+    }
+],
+
+"provisioners": [{
+  "type": "powershell",
+    "elevated_user": "{{user `username`}}",
+  "elevated_password": "{{user `password`}}",
+  "scripts": [
+    "../../scripts/Install-Chocolatey.ps1"
+    
+  ]
+}],
+	
+      
+  "variables": {
+    "iso_url": "../../../ISO/server_2008_r2_64.iso",
+    "iso_checksum_type": "MD5",
+    "iso_checksum": "8d397b69135d207452a78c3c3051339d",
+    "autounattend": "../../answer_files/2008_r2/Autounattend.xml",
+    "username" : "Administrator",
+    "password" : "vagrant" 
+  }
+  
+  }
