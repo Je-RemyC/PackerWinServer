@@ -13,10 +13,10 @@
       "shutdown_command":     "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "disk_size": 10000, 
       "ram_size": 2000,
-      "output_directory": "../../finishedbuild",
+      "output_directory": "../../../../finishedbuild",
       "floppy_files":   [
-        "../../answer_files/2016/Autounattend.xml",
-        "../../scripts/winrm.ps1"                     
+        "../../../answer_files/2016/Autounattend.xml",
+        "../../../scripts/winrm.ps1"                     
         ]
     }
 
@@ -27,13 +27,13 @@
   	  "elevated_user": "{{user `username`}}",
     "elevated_password": "{{user `password`}}",
     "scripts": [
-      "../../scripts/Install-Chocolatey.ps1"
+      "../../../scripts/Install-Chocolatey.ps1"
       
     ]
   }],
       
     "variables":    {
-        "iso_url": "../../ISO/14393.0.160715-1616.RS1_SERVER2016EVAL.ISO",
+        "iso_url": "../../../../ISO/14393.0.160715-1616.RS1_SERVER2016EVAL.ISO",
         "iso_checksum_type": "MD5",
         "iso_checksum": "18a4f00a675b0338f3c7c93c4f131beb",
         "username" : "Administrator",

@@ -5,7 +5,7 @@ Param (
     )
 
 
-$VHDTemplateLocation = "E:\Packer\finishedbuild\Virtual Hard Disks\"
+$VHDTemplateLocation = "E:\finishedbuild\Virtual Hard Disks\"
 $VHDTemplateName = "packer-hyperv-iso.vhdx"
 
 
@@ -64,7 +64,3 @@ start-vm -name $i
 
 StartVM
 
-##change the name
-## change the ip
-
-## disable the firewall
