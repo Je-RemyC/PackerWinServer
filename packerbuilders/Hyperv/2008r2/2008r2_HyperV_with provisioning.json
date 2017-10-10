@@ -1,0 +1,46 @@
+{
+  "builders": [
+    {
+      "type": "hyperv-iso",
+	  "communicator": "winrm",
+	  "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "boot_wait": "2m",
+      "winrm_timeout": "1h",
+      "shutdown_command":     "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "disk_size": 10000, 
+      "ram_size": 2000,
+      "output_directory": "../../../../finishedbuild",
+      "floppy_files":   [
+        "../../../answer_files/2008_r2/Autounattend.xml",
+        "../../../scripts/2008r2SetBasics.ps1"                     
+        ]
+    }
+
+            ],
+
+             "provisioners": [{
+    "type": "powershell",
+  	  "elevated_user": "{{user `username`}}",
+    "elevated_password": "{{user `password`}}",
+    "scripts": [
+      "../../../scripts/Install-Chocolatey.ps1"
+      
+    ]
+  }],
+      
+    "variables":    {
+        "iso_url": "../../../../ISO/server_2008_r2_64.iso",
+        "iso_checksum_type": "MD5",
+        "iso_checksum": "8d397b69135d207452a78c3c3051339d",
+        "username" : "Administrator",
+	"password" : "vagrant" 
+                    }
+
+  }
+  
+
+ 
