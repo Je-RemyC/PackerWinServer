@@ -45,7 +45,15 @@
     }
 ],
 
-"provisioners": [{
+"provisioners": [
+    
+        {
+           "type": "file",
+           "source": "../../scripts/2008r2SetBasics.ps1",
+           "destination": "c:/"
+        },
+    
+    {
   "type": "powershell",
     "elevated_user": "{{user `username`}}",
   "elevated_password": "{{user `password`}}",
