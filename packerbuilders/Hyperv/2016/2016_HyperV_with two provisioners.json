@@ -26,7 +26,7 @@
                 
                     {
                        "type": "file",
-                       "source": "../../../scripts/2008r2SetBasics.ps1",
+                       "source": "../../../scripts/2016SetBasics.ps1",
                        "destination": "c:/"
                     },
                 
