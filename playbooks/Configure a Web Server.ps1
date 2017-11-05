@@ -1,0 +1,1 @@
+New-pssession -computername web1 -credential dc9cloud2\Administrator
