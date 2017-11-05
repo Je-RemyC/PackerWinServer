@@ -1,6 +1,9 @@
 Param (
     [Parameter(Mandatory=$True)]
-    [string]$SetIPaddress
+    [string]$SetIPaddress,
+
+    [Parameter(Mandatory=$True)]
+    [string]$Server
     )
     
 ## Disable Firewall
@@ -26,9 +29,9 @@ Param (
             Write-Host "Setting static IP Address"
         }
 
-        function AddServerToDomain {
+        function RenameServer {
             
-            Add-Computer -DomainName dc9cloud2 -NewName $Server -Credential dc9cloud2\Administrator -Restart
+            Rename-Computer -NewName $Server -Restart
             }
             
     
@@ -40,7 +43,7 @@ DisableFW
 
 SetStaticIP 
 
-AddServerToDomain
+RenameServer
 
 
 
