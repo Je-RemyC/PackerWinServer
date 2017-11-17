@@ -9,9 +9,7 @@ Param (
 
 ## Enable RDP
 
-Function EnableRDP {
-    reg add "HKEY_LOCAL_MACHINESYSTEM\CurrentControl\SetControl\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 1 /f
-    }
+
     
 ## Disable Browser IEES
 
@@ -23,6 +21,11 @@ Function DisableIEESC {
     $SubKey.SetValue("IsInstalled",0,[Microsoft.Win32.RegistryValueKind]::DWORD)
     Write-Host "Successfully disabled IE ESC on $Computer"
     $SuccessComps += $Computer
+}
+
+Function EnableRDP {
+    Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnect"
+    }
 
 ## Disable Firewall
 
@@ -43,17 +46,17 @@ Function DisableIEESC {
             $wmi.EnableStatic("$SetIPaddress", "255.255.255.0")
             $wmi.SetGateways("192.168.2.100", 1)
             $wmi.SetDNSServerSearchOrder("192.168.2.10")
-            
-            Write-Host "Setting static IP Address"
         }
 
         function RenameServer {
             
-            Rename-Computer -NewName $Server -Restart
+            Rename-Computer -NewName $Server 
             }
             
-    
-                 
+   Function InstallChocolatey 
+   { 
+            Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))               
+   }
                  
 DisableIEESC
 
@@ -65,9 +68,6 @@ SetStaticIP
 
 RenameServer
 
-
-
-
-
+InstallChocolatey
 
 
